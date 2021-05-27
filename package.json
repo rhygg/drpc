@@ -1,0 +1,35 @@
+{
+  "name": "drpc-cli",
+  "version": "1.0.0",
+  "description": "📦 A discord rich presence package in the cli!",
+  "homepage": "https://github.com/rhydderchc/drpc",
+  "repository": "rhydderchc/drpc",
+  "author": {
+    "name": "Rhydderchc",
+    "email": "rhydderchc@gmail.com",
+    "url": "https://rhydderchc.rocks"
+  },
+  "main": "index.js",
+  "bin": {
+    "drpc": "index.js"
+  },
+  "keywords": [
+    "drpc",
+    "discord-rpc",
+    "discord",
+    "rpc",
+    "cli"
+  ],
+  "license": "ISC",
+  "dependencies": {
+    "callista": "^1.0.18",
+    "chalk": "^4.1.1",
+    "cli-table": "^0.3.6",
+    "discord-rpc": "^3.2.0",
+    "figlet": "^1.5.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.27.0",
+    "eslint-plugin-unicorn": "^32.0.1"
+  }
+}
