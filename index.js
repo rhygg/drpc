@@ -115,7 +115,7 @@ process.on('unhandledRejection', err=>{
 runner(1000);
 promo();
 }
-if(injectable === "--run" || injectable === "-r" && args[1] === "--save"){
+if(injectable === "--run" && args[1] === "--save"){
 let client = new Client({transport: "ipc"});
 var settings = 
     JSON.parse(
@@ -193,7 +193,7 @@ runner(1000);
 promo();
 }
 
-if(injectable === '--run' || injectable === '-r' && args[1] === '--preset'){
+if(injectable === '--run' && args[1] === '--preset'){
     let client = new Client({transport: "ipc"});
 let obj = require(`./drpc-presets/${args[2]}.json`);
 let app = obj.client_id;
