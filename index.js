@@ -98,13 +98,13 @@ function runner(timeout){
     client.destroy()
   client = new Client({ transport: 'ipc' })
   client.on('ready', () => {
-    running = true;
+    let running = true;
     client.setActivity(activityObject);
     client.transport.socket.on("close", (c, s) => {
      runner()
     })
   })
-  setTimeout(() => client.login({ clientId: app }), timeout)
+  setTimeout(() => client.login({ clientId: app }).catch(console.error), timeout)
 }
 process.on('unhandledRejection', err=>{
      if (err.message === "Could not connect") {
@@ -175,13 +175,13 @@ function runner(timeout){
     client.destroy()
   client = new Client({ transport: 'ipc' })
   client.on('ready', () => {
-    running = true;
+    let running = true;
     client.setActivity(activityObject);
     client.transport.socket.on("close", (c, s) => {
       runner()
     })
   })
-  setTimeout(() => client.login({ clientId: app }), timeout)
+  setTimeout(() => client.login({ clientId: app }).catch(console.error), timeout)
 }
 process.on('unhandledRejection', err=>{
      if (err.message === "Could not connect") {
@@ -205,13 +205,13 @@ function runner(timeout){
     client.destroy()
   client = new Client({ transport: 'ipc' })
   client.on('ready', () => {
-    running = true;
+    let running = true;
     client.setActivity(obj);
     client.transport.socket.on("close", (c, s) => {
       runner()
     })
   })
-  setTimeout(() => client.login({ clientId:app }), timeout)
+  setTimeout(() => client.login({ clientId:app }).catch(console.error), timeout)
 }
 process.on('unhandledRejection', err=>{
      if (err.message === "Could not connect") {
