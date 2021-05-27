@@ -3,7 +3,7 @@
 
 ## Installation
 ```
-npm install -g drpc
+npm install -g drpc-cli
 
 ```
 ## Documentation
@@ -13,7 +13,7 @@ For example: if you create a `drpc-settings.json` file on the Desktop, the cli m
 
 Here's a example settings file,
 
-```
+```json
 {
     "client_id":"",
     "large_image_key":"",
@@ -34,11 +34,15 @@ The following is a full template, fill all the information correctly to yield th
 ## API
 
 **client_id**
+
 The client id of the rpc application.
+
 required: `true`
 
 **large_image_key**
+
 The key(name) of the large image as set in the rpc application.
+
 required: `true`
 
 **large_image_text**
@@ -46,32 +50,45 @@ The text that would show off when a user hovers over the image.
 required: `false`
 
 **small_image_key**
+
 The key(name) of the small image as set in the rpc application.
+
 required: `false`
 
 **small_image_text**
+
 The text that would show off when a user hovers over the image.
+
 required: `false`
 
 **description**
+
 The rpc description.
+
 required: `true`
 
 **state**
+
 The rpc state description.
+
 required: `false`
 
 **show_timestamp**
+
 (Bool) if you want to show the timestamp.
+
 required: `false`
 
 **buttons**
+
 (Array) Buttons on the Rich Presence.
+
 Array takes: two `objects`
+
 Example Object:
-```
-{label:"Something", "url":"https://something.com"},
-{label:"anothersomething","url":"https://example.com"}
+```json
+{"label":"Something", "url":"https://something.com"},
+{"label":"anothersomething","url":"https://example.com"}
 ```
 Min buttons: `1`,
 Max buttons: `2`,
