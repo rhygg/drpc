@@ -1,6 +1,6 @@
 {
   "name": "drpc-cli",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "📦 A discord rich presence package in the cli!",
   "homepage": "https://github.com/rhydderchc/drpc",
   "repository": "rhydderchc/drpc",
