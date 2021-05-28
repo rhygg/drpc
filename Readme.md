@@ -146,5 +146,84 @@ drpc --run --save <name>
 ```
 The configuration you want to run and save must be in the same current working directory.
 
+## Example
+```
+drpc --list
+```
+```
+┌──────┬─────────────────────┬─────────────────────────┐
+│ No.  │ Name                │ ClientID                │
+├──────┼─────────────────────┼─────────────────────────┤
+│ 1    │ node.json           │ 781004595546816522      │
+└──────┴─────────────────────┴─────────────────────────┘
+```
+```
+drpc --help
 
+```
+```
+
+    DRPC CLI
+----------------------------------------------------
+MAIN COMMANDS
+-------------
+--help | -h  --- Shows you the following menu
+--run  --- Starts a process.
+--delete | -del --- delete a configuration. (required args -> <name>)
+--list | -l --- Check the list of saved presets.
+SUB-COMMANDS 
+------------
+RUN
+------
+--save    --- Run a configuration while simultaneously saving it. (required args -> <name>)
+--preset  --- Run a preset instead of a configuration file in the current working dir.
+```
+
+```
+drpc --run --save example
+```
+```
+ ________  ________  ________  ________          ________  ___       ___     
+|\   ___ \|\   __  \|\   __  \|\   ____\        |\   ____\|\  \     |\  \    
+\ \  \_|\ \ \  \|\  \ \  \|\  \ \  \___|        \ \  \___|\ \  \    \ \  \   
+ \ \  \ \\ \ \   _  _\ \   ____\ \  \            \ \  \    \ \  \    \ \  \  
+  \ \  \_\\ \ \  \\  \\ \  \___|\ \  \____        \ \  \____\ \  \____\ \  \ 
+   \ \_______\ \__\\ _\\ \__\    \ \_______\       \ \_______\ \_______\ \__\
+    \|_______|\|__|\|__|\|__|     \|_______|        \|_______|\|_______|\|__|
+                                                                             
+                                                                             
+                                                                             
+Client has sucessfully Started! 
+ Like this project? Please consider starring it On on github! (​https://github.com/rhydderchc/drpc​)
+Data has been saved with the preset name example
+```
+```
+drpc --list
+```
+```
+┌──────┬─────────────────────┬─────────────────────────┐
+│ No.  │ Name                │ ClientID                │
+├──────┼─────────────────────┼─────────────────────────┤
+│ 1    │ example.json        │ 781004595546816522      │
+├──────┼─────────────────────┼─────────────────────────┤
+│ 2    │ node.json           │ 781004595546816523      │
+└──────┴─────────────────────┴─────────────────────────┘
+```
+```
+drpc --delete example
+```
+
+```
+✔ The preset example has been deleted sucessfully!
+```
+```
+drpc --list
+```
+```
+┌──────┬─────────────────────┬─────────────────────────┐
+│ No.  │ Name                │ ClientID                │
+├──────┼─────────────────────┼─────────────────────────┤
+│ 1    │ node.json           │ 781004595546816522      │
+└──────┴─────────────────────┴─────────────────────────┘
+```
 
