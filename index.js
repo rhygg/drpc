@@ -9,6 +9,15 @@ const fs = require('fs');
 const Table = require('cli-table');
 const {Beautify} = require('callista');
 const path = require('path');
+const os = require('os');
+const configDirectory = os.homedir();
+const pathfindBind = path.join(configDirectory, 'drpc-presets');
+if(!fs.existsSync(configDirectory)){
+    fs.mkdirSync(configDirectory)
+}
+if(!fs.existsSync(pathfindBind)){
+fs.mkdirSync(pathfindBind)
+}
 let args = process.argv.slice(2);
 let injectable = args[0];
 if(injectable === '--help' || injectable==='-h'){
@@ -18,20 +27,15 @@ if(injectable === '--help' || injectable==='-h'){
 MAIN COMMANDS
 -------------
 ${chalk.magenta('--help | -h')}  --- Shows you the following menu
-
 ${chalk.cyan('--run')}  --- Starts a process.
-
 ${chalk.cyan('--delete | -del')} --- delete a configuration. (required args -> <name>)
-
 ${chalk.magenta('--list | -l')} --- Check the list of saved presets.
-
 SUB-COMMANDS 
 ------------
 RUN
 ------
 --save    --- Run a configuration while simultaneously saving it. (required args -> <name>)
 --preset  --- Run a preset instead of a configuration file in the current working dir.
-
     `)
 }
 function promo(){
@@ -161,7 +165,9 @@ if(!args[2]){
     throw new Error(chalk.red("Please enter the name of the preset you want to save too"))
 }
 activityObject.client_id = app;
-fs.writeFile(`drpc-presets/${args[2]}.json`, JSON.stringify(activityObject), (err) => {
+const pathPrefix = path.join('drpc-presets', `${args[2]}.json`)
+const pathD = path.join(configDirectory, pathPrefix);
+fs.writeFile(pathD, JSON.stringify(activityObject), (err) => {
     if (err) {
         throw err;
     }
@@ -195,7 +201,9 @@ promo();
 
 if(injectable === '--run' && args[1] === '--preset'){
     let client = new Client({transport: "ipc"});
-let obj = require(`./drpc-presets/${args[2]}.json`);
+    const pathPrefix = path.join('drpc-presets', `${args[2]}.json`)
+const pathD = path.join(configDirectory, pathPrefix);
+let obj = JSON.parse(fs.readFileSync(pathD, 'utf8'))
 let app = obj.client_id;
 delete obj.client_id;
 function runner(timeout){
@@ -228,14 +236,16 @@ if(injectable === '--list' || injectable === '-l'){
     head: ['No.','Name', 'ClientID']
   , colWidths: [6, 21, 25]
 });
-    let allfiles = fs.readdirSync('./drpc-presets');
+const pathPrefix = 'drpc-presets'
+const way = path.join(configDirectory, 'drpc-presets');
+const allfiles = fs.readdirSync(way);
     if(!allfiles){
         console.log(chalk.magenta('You have no presets!'))
     }
-    else{
+    if(allfiles){
         let i = 1;
         allfiles.forEach(file=>{
-            const wawa = require(`./drpc-presets/${file}`)
+            const wawa = JSON.parse(fs.readFileSync(`${way}/${file}`, 'utf8'))
             const clientid = wawa.client_id;
         table.push(
             [i, file, clientid]
@@ -243,7 +253,8 @@ if(injectable === '--list' || injectable === '-l'){
         i++;
         })
         console.log(chalk.cyan(table.toString()))
-    }
+    
+}
     process.exit(0)
 }
 if(injectable === '--save' || injectable === '-s'){
@@ -299,7 +310,7 @@ fs.writeFile(`drpc-presets/${args[1]}.json`, JSON.stringify(activityObject), (er
 process.exit(0)
 }
 if(injectable==='--delete' || injectable === '-del'){
-    fs.unlink(`./drpc-presets/${args[1]}.json`,(err)=>{
+    fs.unlink(path.join(configDirectory, `drpc-presets/${args[1]}.json`),(err)=>{
         if(err){
             throw err;
         }
